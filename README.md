@@ -18,11 +18,14 @@ The exercise uses
 
 You can install these components independently on your own, or use a docker image which has all the necessary components included. The following steps assumes that you are using the docker image.
 
-* To use the docker image, [Docker](https://docs.docker.com/installation/) needs to be installed. Start docker using terminal in linux based systems or boot2docker in non-linux based systems. When running boot2docker, a terminal window pops up.
 * To clone this repository in your workspace run the following command. Here it is assumed to be your home directory.
 ```bash
 $ git clone https://github.com/skanur/ParallaxEdu2015-Ex1.git
 ```
+* To use the docker image, [Docker](https://docs.docker.com/installation/) needs to be installed. Start docker using terminal in linux based systems or boot2docker in non-linux based systems. When running boot2docker, a terminal window pops up.
+* Navigate to workspace directory
+  * Under boot2docker in *Windows*, your home directory could be in /c/Users/[your.username]
+  * Under boot2docker in *MacOsX*, your home directory could be in /Users/[your.username]
 * To test the docker image, run to see gcc installed in the docker image. Type the following window in the terminal (In Linux systems, docker runs as priviledged user. So you might need to use `sudo`) 
 ```bash
 $ docker run -ti --rm wictory/parallax_edu gcc --version
@@ -46,14 +49,14 @@ Test]$ mkdir -p build && cd build && cmake .. && make && ./Test
 Navigate to Exercise directory of this repository and then run
 ```bash
 cd /src/ParallaxEdu2015-Ex1/Exercise
-Exercise]$ mkdir -p build && cd build && cmake .. && make && ./Matrix
+Exercise]$ mkdir -p && build && cd build && cmake .. && make && ./Matrix
 ```
 
 #### Run Solution
 Navigate to Solution directory of this repository and then run
 ```bash
 cd /src/ParallaxEdu2015-Ex1/Solution
-Solution]$ mkdir -p build && cd build && cmake .. && make && ./Matrix
+Solution]$ mkdir -p && build && cd build && cmake .. && make && ./Matrix
 ```
 
 ### Development and compilation
