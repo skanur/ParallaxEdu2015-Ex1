@@ -49,14 +49,14 @@ Test]$ mkdir -p build && cd build && cmake .. && make && ./Test
 Navigate to Exercise directory of this repository and then run
 ```bash
 cd /source/ParallaxEdu2015-Ex1/Exercise
-Exercise]$ mkdir -p && build && cd build && cmake .. && make && ./Matrix
+Exercise]$ mkdir -p build && cd build && cmake .. && make && ./Matrix
 ```
 
 #### Compile and run the Solution
 Navigate to Solution directory of this repository and then run
 ```bash
 cd /source/ParallaxEdu2015-Ex1/Solution
-Solution]$ mkdir -p && build && cd build && cmake .. && make && ./Matrix
+Solution]$ mkdir -p build && cd build && cmake .. && make && ./Matrix
 ```
 
 ### Development and compilation
