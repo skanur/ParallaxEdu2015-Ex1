@@ -26,7 +26,7 @@ To run this exercise in linux systems, you need to bind your current directory t
 $ docker run -ti --rm -v $PWD:/home/ wictory/parallax_edu
 ```
 
-### On Non-Linux Systems (Windows, MacOSX)
+#### On Non-Linux Systems (Windows, MacOSX)
 Once you start docker via boot2docker, a terminal pops up. Enter the following command to enter the docker image.
 ```bash
 $ docker run -ti --rm wictory/parallax_edu
