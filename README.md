@@ -13,52 +13,51 @@ This repository contains first exercise and its solution for Parallax Education 
 The exercise uses
 
 1. [OpenCL 1.2](https://www.khronos.org/opencl/),
-2. [Git](http://git-scm.com/), and
-3. [Cmake](http://www.cmake.org/).
+2. [Git](http://git-scm.com/)
+3. [Cmake](http://www.cmake.org/)
+4. GCC with c++11 support, and
+5. Your favorite text editor
 
 You can install these components independently on your own, or use a docker image which has all the necessary components included. The following steps assumes that you are using the docker image.
 
-* To clone this repository in your workspace run the following command. Here it is assumed to be your home directory.
-```bash
-$ git clone https://github.com/skanur/ParallaxEdu2015-Ex1.git
-```
-* To use the docker image, [Docker](https://docs.docker.com/installation/) needs to be installed. Start docker using terminal in linux based systems or boot2docker in non-linux based systems. When running boot2docker, a terminal window pops up.
-* Navigate to workspace directory
+1. To use the docker image, [Docker](https://docs.docker.com/installation/) needs to be installed. Start docker using terminal in linux based systems or boot2docker in non-linux based systems. When running boot2docker, a terminal window pops up.
+2. Navigate to home directory
   * Under boot2docker in *Windows*, your home directory could be in /c/Users/[your.username]
   * Under boot2docker in *MacOsX*, your home directory could be in /Users/[your.username]
-* To test the docker image, run to see gcc installed in the docker image. Type the following window in the terminal (In Linux systems, docker runs as priviledged user. So you might need to use `sudo`) 
+3. To run this exercise, we make a new directory and navigate into that
+
 ```bash
-$ docker run -ti --rm wictory/parallax_edu gcc --version
-```
-* To run this exercise you need to bind your current directory to docker image's home directory. Navigate to the repository in your host machine. Once inside, run the following command in terminal to **enter inside** the docker image. 
-```bash
-$ docker run -ti --rm -v $PWD:/src  wictory/parallax_edu
+$ cd $HOME #OS Specific. Check step 2
+$ mkdir -p parallax_education_day
+$ cd parallax_education_day
+$ git clone https://github.com/skanur/ParallaxEdu2015-Ex1.git
+$ docker run -ti --rm -v $PWD:/source wictory/parallax_edu gcc --version # Test your docker image
+$ docker run -ti --rm -v $PWD:/source  wictory/parallax_edu # Enter the container
 ```
 
 ### Environment Verification
 You can test OpenCL and Cmake installation in the docker image by running the following commands **inside** docker image.
 
-#### Run Test Program
-Navigate to Test directory of this repository and then run
+#### Compile and run the Test Program
+Check the environment setup by compiling and running Test program.If run successfully, it should display some platform and device information.
 ```bash
-$ cd /src/ParallaxEdu2015-Ex1/Test
+$ cd /source/ParallaxEdu2015-Ex1/Test
 Test]$ mkdir -p build && cd build && cmake .. && make && ./Test
 ```
 
-#### Run Exercise
+#### Compile and run the Exercise
 Navigate to Exercise directory of this repository and then run
 ```bash
-cd /src/ParallaxEdu2015-Ex1/Exercise
+cd /source/ParallaxEdu2015-Ex1/Exercise
 Exercise]$ mkdir -p && build && cd build && cmake .. && make && ./Matrix
 ```
 
-#### Run Solution
+#### Compile and run the Solution
 Navigate to Solution directory of this repository and then run
 ```bash
-cd /src/ParallaxEdu2015-Ex1/Solution
+cd /source/ParallaxEdu2015-Ex1/Solution
 Solution]$ mkdir -p && build && cd build && cmake .. && make && ./Matrix
 ```
 
 ### Development and compilation
 To write/edit the code, use your favorite text editor. The changes should be reflected inside the docker image. Compile the project **inside** docker image by using instructions given above.
-
