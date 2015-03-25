@@ -14,22 +14,22 @@ The exercise uses [OpenCL 1.2](https://www.khronos.org/opencl/), [Git](http://gi
 
 To test the docker image, run to see gcc image installed in the docker image. 
 ```bash
-docker run -ti --rm wictory/parallax_edu gcc --version
+$ docker run -ti --rm wictory/parallax_edu gcc --version
 ```
 (In Linux systems, docker runs as priviledged user. So you might need to use `sudo`)
 
 #### On Linux Systems
 
-To run this exercise in linux systems, you need to bind your current directory to docker image's home directory. First clone the repository and navigate to the repository. Once inside, run the following command to enter **inside** the docker image.
+To run this exercise in linux systems, you need to bind your current directory to docker image's home directory. First clone the repository and navigate to the repository. Once inside, run the following command in terminal to **enter inside** the docker image.
 
 ```bash
-docker run -ti --rm -v $PWD:/home/ wictory/parallax_edu
+$ docker run -ti --rm -v $PWD:/home/ wictory/parallax_edu
 ```
 
 ### On Non-Linux Systems (Windows, MacOSX)
 Once you start docker via boot2docker, a terminal pops up. Enter the following command to enter the docker image.
 ```bash
-docker run -ti --rm wictory/parallax_edu
+$ docker run -ti --rm wictory/parallax_edu
 ```
 
 ### Environment Verification
@@ -38,19 +38,19 @@ You can test OpenCL and Cmake installation in the docker image by running the fo
 #### Run Test Program
 Navigate to Test directory of this repository and then run
 ```bash
-mkdir -p build && cd build && cmake .. && make && ./Test
+Test]$ mkdir -p build && cd build && cmake .. && make && ./Test
 ```
 
 #### Run Exercise
 Navigate to Exercise directory of this repository and then run
 ```bash
-mkdir -p build && cd build && cmake .. && make && ./Matrix
+Exercise]$ mkdir -p build && cd build && cmake .. && make && ./Matrix
 ```
 
 #### Run Solution
 Navigate to Solution directory of this repository and then run
 ```bash
-mkdir -p build && cd build && cmake .. && make && ./Matrix
+Solution]$ mkdir -p build && cd build && cmake .. && make && ./Matrix
 ```
 
 ### Development and compilation
