@@ -4,17 +4,10 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm>
-#include <fstream>
-#include <cerrno>
-#include <map>
-#include <cstdlib>
 #include <chrono>
 
 #include "include/OclObject.hpp"
 #include "include/MatrixAdd.hpp"
-#include "include/MatrixSub.hpp"
-#include "include/WComputable.hpp"
 
 void copyExperiment() {
   OclObject poclOcl;
@@ -40,7 +33,8 @@ void moveExperiment() {
   k2.compute();
   
   if(!k2.verify()) std::cerr << "Move Experiment k2 - Verification Failed" << std::endl;
-}
+ }
+
 
 int main (int argc, char *argv[]){
 
@@ -49,17 +43,16 @@ int main (int argc, char *argv[]){
   copyExperiment();
   auto end = std::chrono::steady_clock::now();
   auto copyTime = std::chrono::duration<double> (end - start).count();
-
+  std::cout << "Copy time - " << copyTime << std::endl;
+  
+  
   // Time move experiment
   start = std::chrono::steady_clock::now();
   moveExperiment();
   end = std::chrono::steady_clock::now();
   auto moveTime = std::chrono::duration<double> (end - start).count();
-
-  //Report time
-  std::cout << "Copy time - " << copyTime << std::endl;
   std::cout << "Move time - " << moveTime << std::endl;
-
+  
   return 0;
 }
         

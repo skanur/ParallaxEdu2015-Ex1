@@ -18,18 +18,18 @@ The exercise uses
 
 You can install these components independently on your own, or use a docker image which has all the necessary components included. The following steps assumes that you are using the docker image.
 
-1. To use the docker image, [Docker](https://docs.docker.com/installation/) needs to be installed. Start docker using terminal in linux based systems or boot2docker in non-linux based systems. When running boot2docker, a terminal window pops up.
-2. To clone this repository in your workspace run the following command. Here it is assumed to be your home directory.
+* To use the docker image, [Docker](https://docs.docker.com/installation/) needs to be installed. Start docker using terminal in linux based systems or boot2docker in non-linux based systems. When running boot2docker, a terminal window pops up.
+* To clone this repository in your workspace run the following command. Here it is assumed to be your home directory.
 ```bash
 $ git clone https://github.com/skanur/ParallaxEdu2015-Ex1.git
 ```
-3. To test the docker image, run to see gcc installed in the docker image. Type the following window in the terminal (In Linux systems, docker runs as priviledged user. So you might need to use `sudo`) 
+* To test the docker image, run to see gcc installed in the docker image. Type the following window in the terminal (In Linux systems, docker runs as priviledged user. So you might need to use `sudo`) 
 ```bash
 $ docker run -ti --rm wictory/parallax_edu gcc --version
 ```
-4. To run this exercise you need to bind your current directory to docker image's home directory. Navigate to the repository in your host machine. Once inside, run the following command in terminal to **enter inside** the docker image. 
+* To run this exercise you need to bind your current directory to docker image's home directory. Navigate to the repository in your host machine. Once inside, run the following command in terminal to **enter inside** the docker image. 
 ```bash
-$ docker run -ti --rm -v $PWD:/src/ wictory/parallax_edu
+$ docker run -ti --rm -v $PWD:/src  wictory/parallax_edu
 ```
 
 ### Environment Verification
