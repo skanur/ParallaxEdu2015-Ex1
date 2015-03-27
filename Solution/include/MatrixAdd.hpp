@@ -12,6 +12,7 @@
 #include <string>
 
 #include "OclObject.hpp"
+#include "../ocl/matrix.cl"
 
 class MatrixAdd {
 public:
@@ -40,12 +41,7 @@ public:
   
   void compute();
   bool verify();
-  int getWidth();
-  
-protected:  
-  std::string getFileContents(const char *filename);
-  std::pair <const char*, ::size_t> getKernelSource(const char *kernelFilename);
-  
+  int getWidth();  
 };
 
 MatrixAdd::MatrixAdd(const OclObject &ocl) : _defaultPlatform(ocl.defaultPlatform), _usedDevice(ocl.usedDevice), _context(ocl.context), _queue(ocl.queue), _width(102400) {
@@ -65,7 +61,7 @@ MatrixAdd::MatrixAdd(const OclObject &ocl) : _defaultPlatform(ocl.defaultPlatfor
   try{
     VECTOR_CLASS<cl::Device> usedDeviceVector;
     usedDeviceVector.push_back(_usedDevice);
-    _src.push_back(getKernelSource("../ocl/matrix.cl"));
+    _src.push_back(std::make_pair(matrixCL.c_str(), matrixCL.length()));
     _program = cl::Program(_context, _src);
     _program.build(usedDeviceVector);
     _bufferA = cl::Buffer(_context, CL_MEM_READ_ONLY, _width * sizeof(float));
@@ -209,33 +205,4 @@ bool MatrixAdd::verify(){
 
 int MatrixAdd::getWidth() {
   return _width;
-}
-
-std::string MatrixAdd::getFileContents(const char *filename) {
-  std::ifstream in(filename, std::ios::in | std::ios::binary);
-  if(in){
-    std::string contents;
-    in.seekg(0, std::ios::end);
-    contents.resize(in.tellg());
-    in.seekg(0, std::ios::beg);
-    in.read(&contents[0], contents.size());
-    in.close();
-    return(contents);
-  }
-  throw(errno);
-}
-
-std::pair<const char*, ::size_t> MatrixAdd::getKernelSource(const char *kernelFilename) {
-  std::ifstream in(kernelFilename, std::ios::in);
-  if(in){
-    std::string contents;
-    in.seekg(0, std::ios::end);
-    contents.resize(in.tellg());
-    ::size_t kernelSize = in.tellg();
-    in.seekg(0,std::ios::beg);
-    in.read(&contents[0], contents.size());
-    in.close();
-    return(std::make_pair(contents.c_str(), kernelSize));
-  }
-  throw(errno);
 }

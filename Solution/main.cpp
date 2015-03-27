@@ -8,6 +8,8 @@
 
 #include "include/OclObject.hpp"
 #include "include/MatrixAdd.hpp"
+#include "include/MatrixSub.hpp"
+#include "include/WComputable.hpp"
 
 void copyExperiment() {
   OclObject poclOcl;
@@ -35,6 +37,17 @@ void moveExperiment() {
   if(!k2.verify()) std::cerr << "Move Experiment k2 - Verification Failed" << std::endl;
  }
 
+void rtPolyExperiment() {
+  OclObject poclOcl;
+  std::vector<WComputable> kObjects;
+  kObjects.emplace_back(MatrixAdd(poclOcl));
+  kObjects.emplace_back(MatrixSub(poclOcl));
+
+  for(auto & o : kObjects) {
+    o.calculate();
+  }
+}
+
 
 int main (int argc, char *argv[]){
 
@@ -52,6 +65,8 @@ int main (int argc, char *argv[]){
   end = std::chrono::steady_clock::now();
   auto moveTime = std::chrono::duration<double> (end - start).count();
   std::cout << "Move time - " << moveTime << std::endl;
+
+  rtPolyExperiment();
   
   return 0;
 }

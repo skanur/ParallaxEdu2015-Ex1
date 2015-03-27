@@ -6,6 +6,7 @@
 #include <cerrno>
 #include <cstdlib>
 
+// For reading UTF-8 files
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -34,18 +35,13 @@ public:
   MatrixAdd(const MatrixAdd&);
   MatrixAdd& operator=(const MatrixAdd&);
 
-  //Move constructor and its respective assignment - Deleted. Implement them 
-  MatrixAdd(MatrixAdd&&) = delete;
-  MatrixAdd& operator=(MatrixAdd&&) = delete;
+  //Move constructor and its respective assignment
+  MatrixAdd(MatrixAdd&&);
+  MatrixAdd& operator=(MatrixAdd&&);
   
   void compute();
   bool verify();
-  int getWidth();
-  
-protected:  
-  std::string getFileContents(const char *filename);
-  std::pair <const char*, ::size_t> getKernelSource(const char *kernelFilename);
-  
+  int getWidth();  
 };
 
 MatrixAdd::MatrixAdd(const OclObject &ocl) : _defaultPlatform(ocl.defaultPlatform), _usedDevice(ocl.usedDevice), _context(ocl.context), _queue(ocl.queue), _width(102400) {
@@ -143,6 +139,49 @@ MatrixAdd& MatrixAdd::operator=(const MatrixAdd& m) {
   _bufferB = m._bufferB;
   _bufferC = m._bufferC;
   _matrix = m._matrix;
+  return *this;
+}
+
+MatrixAdd::MatrixAdd(MatrixAdd&& m) {
+  std::cout << "MatrixAdd::MOVE" << std::endl;
+  _width = m._width;
+  _A = m._A;
+  _B = m._B;
+  _C = m._C;
+  _defaultPlatform = std::move(m._defaultPlatform);
+  _usedDevice = std::move(m._usedDevice);
+  _context = std::move(m._context);
+  _program = std::move(m._program);
+  _src = std::move(m._src);
+  _queue = std::move(m._queue);
+  _bufferA = std::move(m._bufferA);
+  _bufferB = std::move(m._bufferB);
+  _bufferC = std::move(m._bufferC);
+  _matrix = std::move(m._matrix);
+  m._A = nullptr;
+  m._B = nullptr;
+  m._C = nullptr;
+}
+
+MatrixAdd& MatrixAdd::operator=(MatrixAdd&& m) {
+  std::cout << "MatrixAdd::MOVEAssignment" << std::endl;
+  _width = m._width;
+  _A = m._A;
+  _B = m._B;
+  _C = m._C;
+  _defaultPlatform = std::move(m._defaultPlatform);
+  _usedDevice = std::move(m._usedDevice);
+  _context = std::move(m._context);
+  _program = std::move(m._program);
+  _src = std::move(m._src);
+  _queue = std::move(m._queue);
+  _bufferA = std::move(m._bufferA);
+  _bufferB = std::move(m._bufferB);
+  _bufferC = std::move(m._bufferC);
+  _matrix = std::move(m._matrix);
+  m._A = nullptr;
+  m._B = nullptr;
+  m._C = nullptr;
   return *this;
 }
 
