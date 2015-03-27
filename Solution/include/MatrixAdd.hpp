@@ -166,6 +166,9 @@ MatrixAdd::MatrixAdd(MatrixAdd&& m) {
 MatrixAdd& MatrixAdd::operator=(MatrixAdd&& m) {
   std::cout << "MatrixAdd::MOVEAssignment" << std::endl;
   _width = m._width;
+  delete [] _A;
+  delete [] _B;
+  delete [] _C;
   _A = m._A;
   _B = m._B;
   _C = m._C;
